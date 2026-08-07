@@ -2,7 +2,7 @@
 
 中英双语站点，分项目、研究、博客三部分。视觉照着 `docs/` 里的参考截图复刻，设计规范见 `docs/DESIGN.md`。
 
-发布分两步：终端命令负责构建、Git 和打包；`sites_*` 是 Sites MCP 的认证调用，需要在已连接 Sites MCP 的客户端里执行。
+发布到 GitHub Pages：推 `main` 就自动构建、导出静态文件并部署，流程见第 6、7 节。
 
 ---
 
@@ -125,128 +125,82 @@ npm run lint
 
 ---
 
-## 6. 提交并推送到 Sites
+## 6. 导出静态站
+
+站点发布到 GitHub Pages，而 Pages 只发静态文件，所以要先把服务端渲染的结果导出成 html：
 
 ```bash
-npm test
-git add -A
-git commit -m "更新网站"
-COMMIT_SHA=$(git rev-parse HEAD)
-PROJECT_ID=$(node -p "JSON.parse(require('fs').readFileSync('.openai/hosting.json')).project_id")
+npm run export           # 先构建，再导出到 out/
+npm run preview:static   # 按 GitHub Pages 的规则本地验收 out/
 ```
 
-获取推送凭据：
+`build/export-static.mjs` 做的事：把构建好的 worker 在本地跑起来，从 `/zh` 和 `/en` 出发**顺着站内链接爬完整站**（新增内容会自动被收录，不用维护路由清单），每个页面存成 `index.html`，然后：
 
-```text
-sites_create_source_repository_write_credential
-{"project_id":"PROJECT_ID"}
-```
+- **删掉 Next 的客户端脚本。** 全站没有一个 `"use client"` 组件，不需要 hydration；留着反而会让它去请求静态托管上并不存在的 RSC 数据。删掉之后就是纯 HTML + CSS，链接走整页跳转。
+- **把 `/_vinext/image?url=…` 改回原图地址。** 静态托管没有图片优化端点，不改的话所有图片 404。
+- **生成 `/` 的语言跳转页。** 静态托管读不到 `Accept-Language`，改成浏览器端按 `navigator.language` 判断。
+- **生成 `404.html`。** GitHub Pages 找不到路径时发这个文件。
+- **放一个 `.nojekyll`。** 否则 Jekyll 会忽略下划线开头的目录，而字体正好在 `assets/_vinext_fonts/` 下，会全部 404。
 
-把返回的 `remote_url`、`branch`、`token` 输入终端。令牌短期有效，不要写入文件：
+两个可选环境变量：
+
+| 变量 | 什么时候要填 |
+| --- | --- |
+| `PAGES_BASE_PATH` | 仓库不叫 `<用户名>.github.io` 时填 `/仓库名`，否则站内地址会全部指错 |
+| `SITE_URL` | 正式域名，用来写 canonical 和 og:url；不填不影响页面显示 |
+
+导出完 `out/` 约 8 MB，其中 5 MB 是占位配图。
+
+---
+
+## 7. 发布到 GitHub Pages
+
+首次配置：
+
+1. 在 GitHub 建仓库，把本地仓库推上去（`main` 分支）。
+2. 仓库 **Settings → Pages → Build and deployment → Source** 选 **GitHub Actions**。
+3. 如果仓库名不是 `<用户名>.github.io`，到 **Settings → Secrets and variables → Actions → Variables** 加一条 `PAGES_BASE_PATH`，值是 `/仓库名`。顺便可以加 `SITE_URL`。
+
+之后每次推 `main`，`.github/workflows/pages.yml` 会自动跑 lint、测试、导出并部署。也可以在 Actions 页面手动触发。
+
+工作流里用的是 `npm ci` 而不是 `npm install`——`install` 会改写 lock 文件里的平台相关依赖，见第 5 节的说明。
+
+---
+
+## 8. 自定义域名
+
+在域名服务商加解析记录：
+
+- 子域名（如 `www.example.com`）：加一条 `CNAME` 指向 `<用户名>.github.io`
+- 根域名（如 `example.com`）：加四条 `A` 记录指向 `185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`
+
+然后在仓库 **Settings → Pages → Custom domain** 填域名并勾上 **Enforce HTTPS**。GitHub 会在仓库根目录建一个 `CNAME` 文件——注意本项目是用 Actions 部署的，产物来自 `out/`，所以要让导出脚本一起生成这个文件：
 
 ```bash
-read -rp "remote_url: " SITES_REMOTE_URL
-read -rp "branch: " SITES_BRANCH
-read -rsp "token: " SITES_TOKEN; echo
-git -c http.extraHeader="Authorization: Bearer $SITES_TOKEN" push "$SITES_REMOTE_URL" "HEAD:$SITES_BRANCH"
-unset SITES_TOKEN
+PAGES_CNAME=www.example.com npm run export
 ```
+
+在工作流里就是给 `npm run export` 那一步加一个 `PAGES_CNAME` 环境变量。用了自定义域名之后 `PAGES_BASE_PATH` 要留空。
 
 ---
 
-## 7. 打包并保存版本
+## 9. 回滚
+
+Pages 部署的是某次 commit 的产物，回滚就是把代码回到那次 commit 再推一遍：
 
 ```bash
-ARCHIVE=/tmp/portfolio-site.tar.gz
-STAGE=$(mktemp -d)
-mkdir -p "$STAGE/dist/.openai"
-cp -R dist/. "$STAGE/dist/"
-cp .openai/hosting.json "$STAGE/dist/.openai/hosting.json"
-mkdir -p "$STAGE/dist/.openai/drizzle"
-cp -R drizzle/. "$STAGE/dist/.openai/drizzle/"
-tar -C "$STAGE" -czf "$ARCHIVE" dist
+git revert <出问题的 commit>
+git push
 ```
 
-调用并保存返回的 `id` 为 `VERSION_ID`：
-
-```text
-sites_save_site_version
-{"project_id":"PROJECT_ID","commit_sha":"COMMIT_SHA","archive":"/tmp/portfolio-site.tar.gz"}
-```
-
-上传的是**本地 dist**，所以本地构建的质量直接决定线上效果 —— 这也是第 5 节那个字体修正必须执行的原因。
+或者在 Actions 页面找到之前成功的那次运行，点 **Re-run all jobs**。
 
 ---
 
-## 8. 发布与检查
-
-私有站点：
-
-```text
-sites_deploy_private_site_version
-{"project_id":"PROJECT_ID","version_id":"VERSION_ID"}
-```
-
-保存返回的 `id` 为 `DEPLOYMENT_ID`，重复查询直到 `succeeded` 或 `failed`：
-
-```text
-sites_get_deployment_status
-{"project_id":"PROJECT_ID","version_id":"VERSION_ID","deployment_id":"DEPLOYMENT_ID"}
-```
-
-公开或共享站点改用 `sites_deploy_site_version`，参数相同。
-
----
-
-## 9. 分享权限
-
-先调用 `sites_get_site {"project_id":"PROJECT_ID"}` 取得现有邮箱。指定访问者时必须提交完整名单，不是只提交新增邮箱：
-
-```text
-sites_update_site_access
-{"project_id":"PROJECT_ID","access_mode":"custom","allowed_user_emails":["owner@example.com","new@example.com"]}
-```
-
-公开访问：
-
-```text
-sites_update_site_access
-{"project_id":"PROJECT_ID","access_mode":"public"}
-```
-
----
-
-## 10. 自定义域名
-
-```text
-sites_add_custom_domain
-{"project_id":"PROJECT_ID","hostname":"www.example.com"}
-```
-
-在域名服务商添加返回的 `validation_records`；子域名添加 `cname_target`，根域名添加 `apex_proxy_ipv4_targets`。保存返回的 `id` 为 `DOMAIN_ID`，然后查询：
-
-```text
-sites_refresh_custom_domain_status
-{"project_id":"PROJECT_ID","custom_domain_id":"DOMAIN_ID"}
-```
-
----
-
-## 11. 回滚
-
-```text
-sites_list_site_versions
-{"project_id":"PROJECT_ID","limit":50}
-```
-
-选择旧版本的 `id`，把它作为 `VERSION_ID` 再执行第 8 步。回滚只重新发布旧版本，不修改本地源码。
-
----
-
-## 12. 配图来源
+## 10. 配图来源
 
 `public/art/` 下的占位图全部来自[芝加哥艺术博物馆](https://www.artic.edu/)的**公共领域**藏品，逐张的作品名、作者和原始链接记在 `public/art/CREDITS.json`。换成自己的图之后，把 `content/site.ts` 里 `footer.credits` 那句说明一起删掉。
 
 ---
 
-所有大写 ID 都是占位符，调用时替换为真实返回值。不要删除或改写 `.openai/hosting.json` 的 `project_id`，不要保存令牌或密钥。
+> 这个项目原本是发到 OpenAI Sites 的（`worker/index.ts`、`.openai/hosting.json` 是那套留下的）。改投 GitHub Pages 之后那条流程不再使用，需要的话在 git 历史里能找回来。

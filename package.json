@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build && node build/fix-font-urls.mjs",
+    "export": "npm run build && node build/export-static.mjs",
     "start": "vinext start",
+    "preview:static": "node build/serve-static.mjs",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
