@@ -8,38 +8,31 @@ import "./globals.css";
 /*
  * 字体分工来自参考站：标题和界面用无衬线的粗体，正文用衬线。
  * Inter 顶替 StyreneB，Source Serif 4 顶替 Tiempos，都是最接近的开源替代。
- * 中文没有配网络字体——思源系列一套好几兆，会把构建产物撑爆，
- * 所以中文走系统字体栈，见 globals.css 里的 --font-sans / --font-serif。
+ * 中文不配网络字体——思源系列一套好几兆，会把构建产物撑爆，走系统字体。
+ *
+ * ⚠️ fallback 里绝对不能写中文字体名。
+ * 写了之后 vinext 会**静默跳过这个字体的下载**：本地 dev 看着一切正常，
+ * 但构建产物里根本没有 Inter 和 Source Serif 4 的文件，上线才发现字全变了。
+ * 判断方法：构建完看 dist/client/assets/_vinext_fonts/ 下是不是三个字体都在。
+ *
+ * 中文怎么排到通用族前面，见 globals.css 里 unicode-range 那两段 @font-face。
  */
-/*
- * 中日韩字体必须写进 next/font 的 fallback 里，不能在 CSS 里接在变量后面。
- * next/font 生成的变量长这样：'Source Serif 4', sans-serif —— 它自己会补一个通用族。
- * 如果在 CSS 里写 var(--font-serif-latin), "Songti SC", …，那个 sans-serif 就排在
- * 所有中文衬线体前面，而通用族对汉字永远有字形，中文会被它一把接走，
- * 结果是正文中文全部掉成系统默认黑体。放进 fallback 才能排在正确的位置。
- */
-const CJK_SANS = ["PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans CJK SC"];
-const CJK_SERIF = ["Songti SC", "Source Han Serif SC", "Noto Serif SC", "Noto Serif CJK SC", "SimSun"];
-
 const sans = Inter({
   variable: "--font-sans-latin",
   subsets: ["latin"],
   display: "swap",
-  fallback: [...CJK_SANS, "system-ui", "sans-serif"],
 });
 
 const serif = Source_Serif_4({
   variable: "--font-serif-latin",
   subsets: ["latin"],
   display: "swap",
-  fallback: [...CJK_SERIF, "Georgia", "serif"],
 });
 
 const mono = JetBrains_Mono({
   variable: "--font-mono-latin",
   subsets: ["latin"],
   display: "swap",
-  fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
 
 /** 站点根地址。本地开发和线上域名都能自动适配，不用写死。 */

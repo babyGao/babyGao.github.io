@@ -1,6 +1,40 @@
 @import "tailwindcss";
 
 /*
+ * 中文字体：用系统里已有的字体拼两个"只管汉字"的字体族。
+ *
+ * 为什么要这么绕：next/font 生成的变量长这样 —— 'Inter', sans-serif，
+ * 它自己在末尾补了一个通用族。通用族对汉字永远有字形，所以只要把中文字体
+ * 接在 var(--font-sans-latin) 后面，汉字就会被那个 sans-serif 先接走，
+ * 中文永远掉成系统默认黑体。而把中文名写进 next/font 的 fallback 又会让
+ * 它静默跳过字体下载（见 app/layout.tsx 的说明）。
+ *
+ * unicode-range 解决了这个矛盾：下面两族只声明汉字区间，于是可以安全地排在
+ * 变量**前面** —— 拉丁字母不在区间内会自动跳过它、落到 Inter / Source Serif，
+ * 汉字则在轮到通用族之前就被接住。
+ *
+ * 区间只包含汉字、假名和中日韩标点，不含 U+2018–201D 那几个引号，
+ * 那些引号中英文共用，留给拉丁字体排更好看。
+ */
+@font-face {
+  font-family: "CJK Sans";
+  src:
+    local("PingFang SC"), local("HarmonyOS Sans SC"), local("Microsoft YaHei"),
+    local("Noto Sans CJK SC"), local("Noto Sans SC"), local("Heiti SC");
+  font-display: swap;
+  unicode-range: U+3000-303F, U+3040-30FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "CJK Serif";
+  src:
+    local("Songti SC"), local("Source Han Serif SC"), local("Noto Serif CJK SC"),
+    local("Noto Serif SC"), local("STSong"), local("SimSun");
+  font-display: swap;
+  unicode-range: U+3000-303F, U+3040-30FF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+
+/*
  * 设计系统来自 docs/DESIGN.md 和 docs/imgs 里的参考截图。
  *
  * 两条主线：
@@ -51,15 +85,13 @@
   --section: clamp(3.5rem, 7vw, 6rem);
 
   /*
-   * 字体栈。拉丁字母走 next/font 下载的网络字体，中日韩走系统字体——
-   * 思源系列一套好几兆，塞进构建产物会把上传体积撑爆。
-   *
-   * 完整的回退链在 app/layout.tsx 里通过 next/font 的 fallback 配置，
-   * 这里只是取个短名字用。别在下面往变量后面接字体名，会插错位置（原因见 layout.tsx）。
+   * 字体栈。中文族排在前面是安全的：它们用 unicode-range 限定了只管汉字，
+   * 拉丁字母会跳过它们、落到 next/font 下载的 Inter / Source Serif 4。
+   * 顺序不要调，原因见文件顶部那两段 @font-face 的说明。
    */
-  --font-sans: var(--font-sans-latin, system-ui, sans-serif);
-  --font-serif: var(--font-serif-latin, Georgia, serif);
-  --font-mono: var(--font-mono-latin, ui-monospace, monospace);
+  --font-sans: "CJK Sans", var(--font-sans-latin, system-ui, sans-serif);
+  --font-serif: "CJK Serif", var(--font-serif-latin, Georgia, serif);
+  --font-mono: var(--font-mono-latin, ui-monospace, monospace), "CJK Sans";
 }
 
 * {
