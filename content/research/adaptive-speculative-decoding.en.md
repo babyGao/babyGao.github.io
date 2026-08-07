@@ -10,36 +10,20 @@ authors: [Zelin Gao]
 links: [arXiv|https://arxiv.org/abs/0000.00000]
 ---
 
-Speculative decoding is simple: a small model drafts *k* tokens, a large model verifies them in one pass. Accepted tokens advance the sequence; the first rejection is resampled from the large model's distribution.
+## Abstract
 
-*k* is normally a hard-coded hyperparameter — say 5. But **the right *k* differs at every step**. In a stretch of highly determined text the draft could get a dozen right in a row, and 5 leaves that on the table. At a turn that genuinely requires deliberation the very first draft token gets rejected, and 5 means four tokens were computed for nothing.
+This work studies the choice of draft length in speculative decoding. Draft length is normally a hard-coded hyperparameter, while the optimal length varies step by step: in highly determined stretches the draft could get many tokens right in a row and a short fixed length leaves that on the table; at a turn requiring genuine deliberation the very first token is rejected and everything drafted after it was computed for nothing.
 
-## The idea
+We propose letting the draft model decide when to stop as it writes, estimating the value of continuing from its own output distribution. The method **requires no training** and changes neither model — it is a piece of logic inside the decoding loop.
 
-Don't guess *k*. Let the draft model judge, as it writes, whether continuing is still worthwhile.
+## Background
 
-The draft model already has a distribution at every token. The shape of that distribution — how concentrated it is — correlates strongly with whether the large model will accept the token. A sharp distribution usually means the draft is right; a flat one usually means rejection.
+Speculative decoding is simple: a small model drafts *k* tokens and a large model verifies them in a single pass. Accepted tokens advance the sequence; the first rejection is resampled from the large model's distribution. It saves time because verifying *k* tokens costs the large model one forward pass where generating them would cost *k*.
 
-So the stopping rule becomes: **stop when the running estimate of acceptance probability falls below a threshold**, and hand what's written so far to the verifier.
+The reason this works at all is that single-stream decoding is **memory-bandwidth bound**: at batch size 1, moving weights takes far longer than using them, and the compute units sit idle waiting for data. Extra computation is therefore close to free, and trading idle compute for removed serial fetching is a straight win.
 
-## Method
+How large *k* should be has been set by intuition. That one hyperparameter governs both how much each verification saves and how much is wasted on a bad guess — and the right value drifts continuously over the course of a generation. That is the problem this work addresses.
 
-For each drafted token, the draft model's own output distribution gives an estimate of the probability that token is accepted. Multiplying those estimates along the draft yields the probability that the whole draft is accepted. Stop when that falls below threshold.
+---
 
-The threshold itself needs no hand-tuning. Given the cost of one verification pass and the cost of drafting one token, the threshold maximising expected throughput follows directly. Both costs are measurable constants in a given deployment.
-
-A useful side property: the method **requires no training** and no changes to either model. It's a piece of logic in the decoding loop.
-
-## Results
-
-Against fixed-length speculative decoding with the same model pair, adaptive stopping increases the average accepted length per verification, and end-to-end throughput improves accordingly. The gain is larger on tasks whose determinism varies a lot — code and structured output benefit more than open-ended chat.
-
-The failure mode is clear too. When the draft model is poorly calibrated, the probability estimates are unreliable and adaptive stopping degrades to, or slightly below, fixed length. A simple temperature calibration on the draft model largely fixes this, but it needs a small calibration set.
-
-## Open problems
-
-- The estimate uses the draft model's own distribution, which is an inherently biased proxy.
-- The threshold derivation assumes verification cost is independent of draft length; that loosens for long drafts.
-- Composition with tree-structured drafts (verifying several candidates at once) is not done.
-
-> Note: placeholder content, used to check layout and styling. Real paper and numbers to follow.
+Full method, experimental setup, and results are in the paper. It is a working paper and will continue to be updated.
