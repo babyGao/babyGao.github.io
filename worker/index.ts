@@ -30,6 +30,22 @@ const worker = {
     const url = new URL(request.url);
 
     if (url.pathname === "/_vinext/image") {
+      // 图片优化依赖 Cloudflare 的 ASSETS 和 IMAGES 绑定，本地开发没有这两个绑定。
+      // 缺绑定时不要抛 500（那会让本地预览一张图都看不到），直接退回原图。
+      // 线上两个绑定都在，走不到这个分支。
+      if (!env.ASSETS || !env.IMAGES) {
+        const source = url.searchParams.get("url");
+        if (!source) return new Response("Missing url", { status: 400 });
+
+        const target = new URL(source, request.url);
+        // 只允许同源，避免变成一个开放重定向
+        if (target.origin !== url.origin) {
+          return new Response("Invalid url", { status: 400 });
+        }
+
+        return Response.redirect(target.toString(), 302);
+      }
+
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
       return handleImageOptimization(request, {
         fetchAsset: (path) => env.ASSETS.fetch(new Request(new URL(path, request.url))),
