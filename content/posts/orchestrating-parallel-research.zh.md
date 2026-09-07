@@ -3,7 +3,7 @@ title: Claude Code Skills：并行科研工作流
 date: 2026-07-07
 category: 科研工作流
 summary: 通过任务拆分、工作区隔离、任务分发与进度观测，组织多个智能体开展独立实验和并行开发。
-cover: /art/post-slope.jpg
+cover: /art/post-parallel-printmaking.jpg
 tags: [Claude Code, Skills]
 featured: true
 authors: [高泽林]

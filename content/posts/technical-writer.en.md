@@ -3,7 +3,7 @@ title: Claude Code Skills: Technical Writing and Context Management
 date: 2026-07-07
 category: Technical writing
 summary: Structuring documentation around reader needs, information hierarchy, and explanation order for READMEs, API references, tutorials, and project context.
-cover: /art/post-maples.jpg
+cover: /art/post-technical-reading.jpg
 tags: [Claude Code, Skills]
 featured: true
 authors: [Zelin Gao]

@@ -3,7 +3,7 @@ title: EduPilot · Multimodal Teaching Agent
 date: 2026-06-18
 category: Education
 summary: A multimodal preparation system integrating teaching resource retrieval, slide and lesson plan generation, feedback revision, and document export with teacher review throughout.
-cover: /art/project-teaching.jpg
+cover: /art/project-education-lesson.jpg
 tags: [Multi-Agent, LangGraph, RAG, Multimodal]
 featured: true
 year: 2026

@@ -745,6 +745,13 @@ img {
   object-fit: cover;
 }
 
+/* 保留教学中的人物与乐谱，以及阅读、审阅场景中的动作主体。 */
+img[src*="project-education-lesson"] { object-position: 50% 25%; }
+img[src*="post-technical-reading"] { object-position: 50% 38%; }
+img[src*="post-visual-review"] { object-position: 50% 48%; }
+img[src*="post-parallel-printmaking"] { object-position: 50% 38%; }
+img[src*="research-sequence-motion"] { object-position: 50% 49%; transform: scale(1.7); }
+
 .feature-caption {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

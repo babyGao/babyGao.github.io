@@ -3,7 +3,7 @@ title: Claude Code Skills：技术文档与上下文管理
 date: 2026-07-07
 category: 技术写作
 summary: 围绕读者需求、信息结构与表达顺序组织技术文档，应用于 README、API 说明、教程及跨会话的项目背景整理。
-cover: /art/post-maples.jpg
+cover: /art/post-technical-reading.jpg
 tags: [Claude Code, Skills]
 featured: true
 authors: [高泽林]

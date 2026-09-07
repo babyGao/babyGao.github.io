@@ -3,7 +3,7 @@ title: 多模态金融研报自动生成系统
 date: 2026-01-20
 category: 金融
 summary: 融合年报、财务表格、行情图像与新闻资讯，通过结构化检索和多智能体协作，支持从资料采集、信息分析到研报生成的完整流程。
-cover: /art/project-finance.jpg
+cover: /art/project-finance-exchange.jpg
 tags: [多模态, RAG, MultiAgent, Celery]
 featured: true
 year: 2026

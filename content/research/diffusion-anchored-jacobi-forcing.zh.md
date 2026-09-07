@@ -3,7 +3,7 @@ title: 扩散锚定的 Jacobi 强制解码
 date: 2026-07-10
 category: 并行解码
 summary: 研究并行解码的收敛效率，在保持模型权重与验证约束不变的条件下，以全局草稿改善迭代起点，最终输出与逐字生成逐位一致。
-cover: /art/research-weave.jpg
+cover: /art/research-parallel-train.jpg
 tags: [并行解码, Jacobi 迭代, 扩散模型]
 featured: true
 venue: 投稿中

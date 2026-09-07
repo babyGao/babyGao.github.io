@@ -3,7 +3,7 @@ title: 推测解码中的自适应草稿停止
 date: 2026-03-05
 category: 推测解码
 summary: 针对生成过程中不断变化的草稿长度需求，利用草稿模型自身的输出分布判断停止时机，无需额外训练，也不修改模型权重。
-cover: /art/research-astrolabe.jpg
+cover: /art/research-sequence-motion.jpg
 tags: [推测解码, 自适应, 推理效率]
 venue: 工作论文
 authors: [高泽林]

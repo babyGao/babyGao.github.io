@@ -3,7 +3,7 @@ title: Multimodal Financial Research Report Generation
 date: 2026-01-20
 category: Finance
 summary: A system combining annual reports, financial tables, market charts, and news through structured retrieval and agent collaboration, from data collection and analysis to report generation.
-cover: /art/project-finance.jpg
+cover: /art/project-finance-exchange.jpg
 tags: [Multimodal, RAG, MultiAgent, Celery]
 featured: true
 year: 2026

@@ -124,5 +124,91 @@
     "artist": "Ikeda Keisen",
     "date": "1908",
     "source": "https://www.artic.edu/artworks/191599"
+  },
+  {
+    "file": "/art/project-education-lesson.jpg",
+    "title": "The Music Lesson",
+    "artist": "Gerard ter Borch the Younger (Dutch, 1617-1681)",
+    "date": "c. 1670",
+    "source": "https://www.artic.edu/artworks/512",
+    "image_source": "https://commons.wikimedia.org/wiki/File:G%C3%A9raerd_Ter_Borch_-_The_Music_Lesson_-_1891.1_-_Art_Institute_of_Chicago.jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "教学与资料共创",
+    "display_position": "50% 25%"
+  },
+  {
+    "file": "/art/project-finance-exchange.jpg",
+    "title": "Chicago Stock Exchange Trading Room: Reconstruction at the Art Institute of Chicago",
+    "artist": "Adler & Sullivan, original architects; American, 1883-1896",
+    "date": "1893/94 (original built)\n1972 (original demolished)\n1976/77 (reconstructed)",
+    "source": "https://www.artic.edu/artworks/156538",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Chicago_Stock_Exchange_Trading_Room_Reconstruction_at_the_Art_Institute_of_Chicago.jpg",
+    "license": "CC0",
+    "is_public_domain": true,
+    "theme": "金融市场与交易",
+    "display_position": "50% 50%"
+  },
+  {
+    "file": "/art/research-parallel-train.jpg",
+    "title": "Arrival of the Normandy Train, Gare Saint-Lazare",
+    "artist": "Claude Monet (French, 1840–1926)",
+    "date": "1877",
+    "source": "https://www.artic.edu/artworks/16571",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Claude_Monet_-_Arrival_of_the_Normandy_Train,_Gare_Saint-Lazare_-_Google_Art_Project.jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "并行路径与推理效率",
+    "display_position": "50% 50%"
+  },
+  {
+    "file": "/art/research-sequence-motion.jpg",
+    "title": "Animal Locomotion, Plate 758",
+    "artist": "Eadweard Muybridge",
+    "date": "1887",
+    "source": "https://www.artic.edu/artworks/195560",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Cockatoo_flying_(rbm-QP301M8-1887-758).jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "image_version": "Public-domain reproduction of plate 758 from USC Libraries, via Wikimedia Commons; the same plate is represented in the Art Institute collection.",
+    "theme": "序列、时间与逐步验证",
+    "display_position": "50% 49%"
+  },
+  {
+    "file": "/art/post-parallel-printmaking.jpg",
+    "title": "The Etcher's Press - The Printmaker's Shop",
+    "artist": "Abraham Bosse",
+    "date": "1642",
+    "source": "https://www.artic.edu/artworks/76432",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Abraham_Bosse,_l%27imprimerie_en_taille_douce_(1642).jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "image_version": "Public-domain reproduction of the 1642 print from Bibliothèque nationale de France, via Wikimedia Commons; the work is also represented in the Art Institute collection.",
+    "theme": "任务分工与协作流程",
+    "display_position": "50% 38%"
+  },
+  {
+    "file": "/art/post-visual-review.jpg",
+    "title": "The Print Collector",
+    "artist": "Honoré Victorin Daumier (French, 1808–1879)",
+    "date": "c. 1860",
+    "source": "https://www.artic.edu/artworks/6002",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Honor%C3%A9-Victorin_Daumier_-_The_Print_Collector_-_1957.305_-_Art_Institute_of_Chicago.jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "视觉检查与结果审阅",
+    "display_position": "50% 48%"
+  },
+  {
+    "file": "/art/post-technical-reading.jpg",
+    "title": "Woman Reading",
+    "artist": "Édouard Manet (French, 1832–1883)",
+    "date": "1880–82",
+    "source": "https://www.artic.edu/artworks/14591",
+    "image_source": "https://commons.wikimedia.org/wiki/File:%C3%89douard_Manet_-_Woman_Reading_-_1933.435_-_Art_Institute_of_Chicago.jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "阅读、文档与信息表达",
+    "display_position": "50% 38%"
   }
 ]

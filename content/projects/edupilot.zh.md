@@ -3,7 +3,7 @@ title: EduPilot · 多模态教学智能体
 date: 2026-06-18
 category: 教育
 summary: 面向教师备课的多模态智能体系统，整合教学资料检索、课件与教案生成、反馈修订及多格式导出，支持教师参与全过程审核。
-cover: /art/project-teaching.jpg
+cover: /art/project-education-lesson.jpg
 tags: [Multi-Agent, LangGraph, RAG, 多模态]
 featured: true
 year: 2026

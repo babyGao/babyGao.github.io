@@ -279,10 +279,10 @@ export const footer = {
     ],
   } satisfies BilingualOf<{ title: string; links: { label: string; href: string }[] }[]>,
 
-  /** 配图版权说明。占位图全部来自芝加哥艺术博物馆的公共领域藏品。 */
+  /** 配图版权说明；具体馆藏与图像来源见 public/art/CREDITS.json。 */
   credits: {
-    zh: "艺术藏品配图来自芝加哥艺术博物馆公共领域馆藏；博客封面为站点提供的插画。",
-    en: "Collection artwork is from the public domain holdings of The Art Institute of Chicago. The blog cover illustration was supplied for this site.",
+    zh: "艺术配图来自芝加哥艺术博物馆等公共领域馆藏；博客封面为站点提供的插画。",
+    en: "Artwork is drawn from public domain collections, including The Art Institute of Chicago. The blog cover illustration was supplied for this site.",
   } satisfies Bilingual,
 
   rights: {

@@ -3,7 +3,7 @@ title: Claude Code Skills: Browser Automation and Interface Validation
 date: 2026-07-07
 category: Developer tools
 summary: Using Playwright CLI for browser interactions, state inspection, and screenshots that support frontend validation and user documentation.
-cover: /art/post-wind.jpg
+cover: /art/post-visual-review.jpg
 tags: [Claude Code, Skills]
 featured: true
 authors: [Zelin Gao]

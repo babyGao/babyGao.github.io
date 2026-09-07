@@ -3,7 +3,7 @@ title: Adaptive Draft Stopping in Speculative Decoding
 date: 2026-03-05
 category: Speculative decoding
 summary: Adapting draft length to changing generation conditions using the draft model's own output distribution, without additional training or changes to model weights.
-cover: /art/research-astrolabe.jpg
+cover: /art/research-sequence-motion.jpg
 tags: [Speculative decoding, Adaptive inference, Inference efficiency]
 venue: Working paper
 authors: [Zelin Gao]
