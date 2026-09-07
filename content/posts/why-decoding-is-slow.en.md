@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Why Decoding Is Slow, and Which Layer It's Slow In
 date: 2026-07-28
 category: Notes

@@ -34,7 +34,7 @@ export const ui = {
   navResearch: { zh: "研究", en: "Research" } satisfies Bilingual,
   navBlog: { zh: "博客", en: "Blog" } satisfies Bilingual,
   navAbout: { zh: "关于", en: "About" } satisfies Bilingual,
-  contact: { zh: "联系我们", en: "Get in touch" } satisfies Bilingual,
+  contact: { zh: "联系", en: "Contact" } satisfies Bilingual,
   readMore: { zh: "阅读全文", en: "Read more" } satisfies Bilingual,
   projectDetail: { zh: "项目详情", en: "Project details" } satisfies Bilingual,
   paperDetail: { zh: "论文详情", en: "Paper details" } satisfies Bilingual,
@@ -48,17 +48,17 @@ export const ui = {
   labelRole: { zh: "角色", en: "Role" } satisfies Bilingual,
   labelYear: { zh: "年份", en: "Year" } satisfies Bilingual,
   labelStatus: { zh: "状态", en: "Status" } satisfies Bilingual,
-  labelVenue: { zh: "发表于", en: "Venue" } satisfies Bilingual,
+  labelVenue: { zh: "发表状态", en: "Publication status" } satisfies Bilingual,
   labelAuthors: { zh: "作者", en: "Authors" } satisfies Bilingual,
   labelLinks: { zh: "链接", en: "Links" } satisfies Bilingual,
   /** 某条内容缺当前语言版本时的提示 */
   fallbackNote: {
-    zh: "这篇暂时只有英文版，下面显示的是原文。",
-    en: "This one is only written in Chinese for now — the original is shown below.",
+    zh: "本文暂无中文译文，以下为英文原文。",
+    en: "An English translation is not yet available. The Chinese original follows.",
   } satisfies Bilingual,
   empty: {
-    zh: "这里还空着，很快就会有内容。",
-    en: "Nothing here yet — content is on the way.",
+    zh: "暂无已发布内容。",
+    en: "No entries published yet.",
   } satisfies Bilingual,
 };
 
@@ -67,85 +67,85 @@ export const home = {
     /** 首页大标题，mark 的片段会带下划线 */
     title: {
       zh: [
-        { t: "把大模型" },
-        { t: "算得更快", mark: true },
+        { t: "探索" },
+        { t: "高效推理", mark: true },
         { t: "，" },
-        { t: "也把智能体" },
-        { t: "真正用起来", mark: true },
+        { t: "构建" },
+        { t: "行业智能体", mark: true },
       ],
       en: [
-        { t: "AI " },
-        { t: "research", mark: true },
+        { t: "Advancing " },
+        { t: "efficient inference", mark: true },
         { t: " and " },
-        { t: "agents", mark: true },
-        { t: " that earn their place in real work" },
+        { t: "AI agents", mark: true },
+        { t: " for industry" },
       ],
     } satisfies BilingualOf<Segment[]>,
     lead: {
-      zh: "我做两件事：一是把智能体送进教育、商业地产和金融的日常工作里，让它真的替人干活，而不是演示；二是把大模型的解码过程做快，让同样的算力吐出更多的字。",
-      en: "Two things: putting agents into everyday work across education, commercial real estate, and finance — doing the job, not demoing it; and making decoding faster so the same compute produces more tokens.",
+      zh: "研究聚焦大语言模型的推理效率与生成一致性，探索无需修改模型权重的解码加速方法。工程实践面向教育、商业地产与金融，将领域知识、多模态理解与智能体协作融入完整业务流程。",
+      en: "Research focuses on efficient language model inference and consistent generation, exploring decoding acceleration without modifying model weights. Applications in education, commercial real estate, and finance integrate domain knowledge, multimodal understanding, and agent collaboration into complete workflows.",
     } satisfies Bilingual,
   },
 
   /** 首页那张深色卡片 */
   spark: {
     title: {
-      zh: "难的问题，才值得做。",
-      en: "The hard questions are the ones worth doing.",
+      zh: "从推理效率，到系统可靠性。",
+      en: "Efficient inference. Reliable systems.",
     } satisfies Bilingual,
     lead: {
-      zh: "推理为什么慢、智能体为什么不可靠、垂直领域的知识该怎么进模型——这些是我一直在啃的问题。",
-      en: "Why inference is slow, why agents are unreliable, how domain knowledge actually gets into a model — these are the problems I keep working on.",
+      zh: "围绕生成过程的并行性、输出一致性与领域知识建模，连接基础研究与行业应用。",
+      en: "Connecting research and applications through parallel generation, output consistency, and domain knowledge modeling.",
     } satisfies Bilingual,
-    action: { zh: "看看我的研究", en: "See the research" } satisfies Bilingual,
+    action: { zh: "查看研究", en: "Explore research" } satisfies Bilingual,
     /** 散落在深色卡片四周的问题，对应参考站首页那张"hard questions"图 */
     questions: {
-      zh: ["解码为什么慢？", "并行能走多远？", "智能体凭什么可靠？", "领域知识怎么进模型？"],
+      zh: ["解码效率", "并行生成", "智能体可靠性", "领域知识建模"],
       en: [
-        "Why is decoding slow?",
-        "How far does parallelism go?",
-        "What makes an agent reliable?",
-        "How does domain knowledge get in?",
+        "Decoding efficiency",
+        "Parallel generation",
+        "Agent reliability",
+        "Domain knowledge",
       ],
     } satisfies BilingualOf<string[]>,
   },
 
   projects: {
-    title: { zh: "最近的项目", en: "Recent projects" } satisfies Bilingual,
+    title: { zh: "精选项目", en: "Selected projects" } satisfies Bilingual,
     lead: {
-      zh: "教育、商业地产、金融，三套已经跑通业务闭环的系统。",
-      en: "Education, commercial real estate, finance — three systems with a working end-to-end loop.",
+      zh: "面向教育、商业地产与金融的智能体系统，覆盖知识检索、任务协作与多模态内容生成。",
+      en: "Agent systems for education, commercial real estate, and finance, spanning retrieval, task coordination, and multimodal content generation.",
     } satisfies Bilingual,
   },
 
   research: {
     title: { zh: "研究", en: "Research" } satisfies Bilingual,
     lead: {
-      zh: "围绕解码加速的一些工作，方向是在不改动模型权重的前提下把生成速度提上去。",
-      en: "Work on decoding acceleration — getting more speed without touching model weights.",
+      zh: "围绕并行解码与推测解码，研究生成一致性约束下的推理加速。",
+      en: "Research on parallel and speculative decoding under generation consistency constraints.",
     } satisfies Bilingual,
   },
 
   journal: {
     title: { zh: "博客", en: "Blog" } satisfies Bilingual,
     lead: {
-      zh: "读论文、写代码、踩坑之后的一些笔记。",
-      en: "Notes from reading papers, writing code, and hitting walls.",
+      zh: "关于智能体工具、科研工作流与技术表达的实践文章。",
+      en: "Articles on agent tools, research workflows, and technical communication.",
     } satisfies Bilingual,
   },
 
   about: {
-    title: { zh: "关于我", en: "About" } satisfies Bilingual,
+    title: { zh: "关于", en: "About" } satisfies Bilingual,
     body: {
       zh: [
-        "我做 AI Agent 和大模型应用的落地：从多智能体编排、RAG 全链路，到微调与推理加速，一条链上的活都干，也都自己部署上线过。",
-        "目前三个项目分别落在教育、商业地产和金融——领域差得很远，但要解决的是同一类问题：把一个行业里那些靠人的经验、口径和判断，拆开来重新装进模型能稳定执行的形状里。",
-        "做下来最一致的经验是：模型擅长理解和转述，不擅长需要保证的事。所以真正的工程量不在提示词，在于把哪些事交给模型、哪些事必须交给代码，以及模型出错时我有没有办法发现。",
+        "高泽林，专注于 AI Agent、大语言模型应用与推理加速。技术工作涵盖多智能体编排、检索增强生成、领域模型微调及服务部署。",
+        "项目围绕教育、商业地产与金融的复杂业务需求展开，将分散的领域资料、专业规则与任务流程组织为可执行、可追溯的智能体系统。",
+        "研究关注模型权重保持不变时的生成效率；工程实践关注任务完成度、信息溯源与运行稳定性，通过明确的职责划分、持续评测和系统可观测性支持迭代。",
       ],
       en: [
-        "I ship AI agents and LLM applications end to end — multi-agent orchestration, the full RAG pipeline, fine-tuning and inference acceleration — and I deploy and operate what I build.",
-        "My three current projects sit in education, commercial real estate, and finance. The domains are far apart, but the problem is the same one: taking the experience, vocabulary, and judgment calls locked in an industry and rebuilding them into something a model can execute reliably.",
-        "The most consistent lesson: models are good at understanding and restating, and bad at things that need a guarantee. So the real engineering isn't in the prompt — it's deciding what goes to the model, what must stay in code, and whether I'll find out when the model gets it wrong.",
+        "Zelin Gao works on AI agents, language model applications, and inference acceleration. Technical work spans multi-agent orchestration, retrieval-augmented generation, domain fine-tuning, and service deployment.",
+        "Projects address complex workflows in education, commercial real estate, and finance, organizing domain materials, professional rules, and task processes into executable, traceable agent systems.",
+        "Research examines generation efficiency with model weights held fixed. Engineering work focuses on task completion, source attribution, and operational stability through explicit responsibilities, ongoing evaluation, and observability.",
       ],
     } satisfies BilingualOf<string[]>,
 
@@ -154,7 +154,7 @@ export const home = {
       zh: [
         {
           name: "Agent 与 LLM 应用",
-          desc: "用 LangChain / LangGraph 搭多智能体协作拓扑（规划-执行-反思三层），设计 ReAct、CoT、Self-Reflection 等提示范式；也用 Dify、AutoGen 做快速编排。端到端的 Agent 工作流设计与落地。",
+          desc: "基于 LangChain / LangGraph 构建多智能体协作流程，结合 ReAct、CoT 与 Self-Reflection 组织规划、执行及检查；支持 Dify、AutoGen 编排与端到端应用开发。",
         },
         {
           name: "RAG 全链路",
@@ -162,39 +162,39 @@ export const home = {
         },
         {
           name: "后端工程",
-          desc: "FastAPI / Python 构建 RESTful 与流式接口；Docker 容器化与 Compose 服务编排；Git 与 CI/CD；微服务架构设计，项目独立部署与线上排障。",
+          desc: "基于 FastAPI / Python 构建 RESTful 与流式接口，结合 Docker、Compose 和 CI/CD 完成服务部署；涵盖微服务设计、运行监控与故障定位。",
         },
         {
           name: "微调与推理加速",
-          desc: "LoRA / QLoRA 高效微调，在 Qwen / LLaMA 系列上的 SFT 实战；vLLM 推理加速，PagedAttention 与张量并行的分布式方案；理解 Transformer 与注意力机制的底层实现。",
+          desc: "面向 Qwen / LLaMA 的 LoRA、QLoRA 与监督微调；基于 vLLM、PagedAttention 和张量并行优化推理服务，结合 Transformer 与注意力机制分析计算开销。",
         },
       ],
       en: [
         {
           name: "Agents & LLM apps",
-          desc: "Multi-agent topologies in LangChain / LangGraph (plan–execute–reflect); ReAct, CoT, and Self-Reflection prompting patterns; Dify and AutoGen for quick orchestration. End-to-end agent workflow design and delivery.",
+          desc: "Multi-agent workflows in LangChain / LangGraph, using ReAct, CoT, and Self-Reflection for planning, execution, and review; Dify and AutoGen orchestration and end-to-end application development.",
         },
         {
-          name: "The full RAG pipeline",
+          name: "Retrieval-augmented generation",
           desc: "Document parsing (PDF / Word / HTML), semantic chunking, embeddings (BGE / text-embedding-3); Milvus collection design and IVF_FLAT / HNSW index tuning; hybrid dense + BM25 retrieval, metadata filtering, reranking.",
         },
         {
           name: "Backend engineering",
-          desc: "RESTful and streaming APIs in FastAPI / Python; Docker and Compose; Git and CI/CD; microservice design, independent deployment, and production debugging.",
+          desc: "RESTful and streaming APIs in FastAPI / Python; service deployment with Docker, Compose, and CI/CD; microservice design, monitoring, and fault diagnosis.",
         },
         {
           name: "Fine-tuning & inference",
-          desc: "LoRA / QLoRA fine-tuning with hands-on SFT across Qwen and LLaMA; vLLM serving, PagedAttention and tensor parallelism; working knowledge of Transformer internals and attention.",
+          desc: "LoRA, QLoRA, and supervised fine-tuning for Qwen and LLaMA; inference serving with vLLM, PagedAttention, and tensor parallelism; computational analysis of Transformers and attention.",
         },
       ],
     } satisfies BilingualOf<{ name: string; desc: string }[]>,
   },
 
   contact: {
-    title: { zh: "聊聊？", en: "Let's talk" } satisfies Bilingual,
+    title: { zh: "研究与项目合作", en: "Research & collaboration" } satisfies Bilingual,
     lead: {
-      zh: "研究合作、智能体落地，或者只是想聊聊某篇论文，都可以直接写信。",
-      en: "Research collaboration, shipping an agent, or just talking through a paper — email is fine.",
+      zh: "欢迎就推理加速、智能体系统与行业应用开展技术交流及合作。",
+      en: "For technical discussions and collaboration on inference acceleration, agent systems, and industry applications.",
     } satisfies Bilingual,
   },
 };
@@ -202,32 +202,32 @@ export const home = {
 export const projectsPage = {
   title: { zh: "项目", en: "Projects" } satisfies Bilingual,
   lead: {
-    zh: "把一个行业的流程、口径和判断标准拆开，重新装进模型能稳定执行的形状里。下面三个分别落在教育、商业地产和金融。",
-    en: "Taking an industry's workflow, vocabulary, and judgment calls apart and rebuilding them into something a model can execute reliably. These three sit in education, commercial real estate, and finance.",
+    zh: "面向教育、商业地产与金融的复杂业务流程，结合领域知识、多模态理解与多智能体协作，构建覆盖信息获取、任务执行和成果生成的应用系统。",
+    en: "Systems for complex workflows in education, commercial real estate, and finance, combining domain knowledge, multimodal understanding, and agent collaboration across information retrieval, task execution, and content generation.",
   } satisfies Bilingual,
 };
 
 export const researchPage = {
   title: { zh: "研究", en: "Research" } satisfies Bilingual,
   lead: {
-    zh: "我的研究集中在大模型的推理效率上：在不动权重、不掉精度的前提下，让生成过程跑得更快。",
-    en: "My research is about inference efficiency: making generation faster without touching weights or giving up output quality.",
+    zh: "研究集中在大语言模型的推理效率，关注并行解码与推测解码中的计算组织、收敛效率和草稿长度选择，探索模型权重不变条件下的生成加速。",
+    en: "Research focuses on language model inference efficiency, examining computation, convergence, and draft length selection in parallel and speculative decoding without changing model weights.",
   } satisfies Bilingual,
   /** 研究方向的小格子，对应参考站的 Research teams */
   topics: {
     zh: [
-      { name: "并行解码", desc: "让模型一步吐出多个 token，同时保证结果与逐字生成严格一致。" },
-      { name: "扩散锚定", desc: "用扩散式的全局草稿给自回归解码提供锚点，缩短收敛所需的迭代轮数。" },
-      { name: "推测解码", desc: "小模型起草、大模型验证，研究草稿质量和接受率之间的权衡。" },
-      { name: "服务与调度", desc: "批处理、KV 缓存和显存布局——真实吞吐往往卡在这些地方。" },
-      { name: "评测", desc: "加速方法到底有没有掉质量，需要一套不糊弄自己的测法。" },
+      { name: "并行解码", desc: "研究多位置并行生成的收敛过程及输出一致性。" },
+      { name: "扩散锚定", desc: "研究全局草稿与迭代收敛效率之间的关系。" },
+      { name: "推测解码", desc: "研究草稿长度、接受率与验证成本之间的权衡。" },
+      { name: "服务与调度", desc: "关注批处理、KV 缓存与显存访问对延迟和吞吐的影响。" },
+      { name: "评测", desc: "在统一生成条件下评估输出一致性、延迟与资源开销。" },
     ],
     en: [
-      { name: "Parallel decoding", desc: "Emitting several tokens per step while staying strictly identical to token-by-token generation." },
-      { name: "Diffusion anchoring", desc: "Using a diffusion-style global draft to anchor autoregressive decoding and cut the iterations needed to converge." },
-      { name: "Speculative decoding", desc: "Small model drafts, large model verifies — the trade-off between draft quality and acceptance rate." },
-      { name: "Serving & scheduling", desc: "Batching, KV cache, memory layout — where real throughput actually gets stuck." },
-      { name: "Evaluation", desc: "Whether an acceleration method quietly costs quality, measured in a way that doesn't fool you." },
+      { name: "Parallel decoding", desc: "Convergence and output consistency in parallel generation across multiple positions." },
+      { name: "Diffusion anchoring", desc: "The relationship between global drafts and iterative convergence." },
+      { name: "Speculative decoding", desc: "Trade-offs among draft length, acceptance rate, and verification cost." },
+      { name: "Serving & scheduling", desc: "Effects of batching, KV caches, and memory access on latency and throughput." },
+      { name: "Evaluation", desc: "Output consistency, latency, and resource costs under matched generation conditions." },
     ],
   } satisfies BilingualOf<{ name: string; desc: string }[]>,
 };
@@ -235,8 +235,8 @@ export const researchPage = {
 export const blogPage = {
   title: { zh: "博客", en: "Blog" } satisfies Bilingual,
   lead: {
-    zh: "读论文、写代码、踩坑之后的一些笔记。写得比论文随意，比推文完整。",
-    en: "Notes from reading papers, writing code, and hitting walls — looser than a paper, longer than a tweet.",
+    zh: "围绕智能体开发、科研自动化与技术表达，记录工具的适用场景、工作流程及实践经验。文章原文发布于博客园。",
+    en: "Articles on agent development, research automation, and technical communication, covering tools, workflows, and practical experience. Original articles are published in Chinese on CNBlogs.",
   } satisfies Bilingual,
 };
 
@@ -255,7 +255,7 @@ export const footer = {
       {
         title: "关于",
         links: [
-          { label: "关于我", href: "#about" },
+          { label: "关于", href: "#about" },
           { label: "配图来源", href: "#credits" },
         ],
       },
@@ -272,7 +272,7 @@ export const footer = {
       {
         title: "About",
         links: [
-          { label: "About me", href: "#about" },
+          { label: "About", href: "#about" },
           { label: "Image credits", href: "#credits" },
         ],
       },
@@ -281,8 +281,8 @@ export const footer = {
 
   /** 配图版权说明。占位图全部来自芝加哥艺术博物馆的公共领域藏品。 */
   credits: {
-    zh: "站内占位配图来自芝加哥艺术博物馆（The Art Institute of Chicago）公共领域藏品。",
-    en: "Placeholder artwork is from the public domain collection of The Art Institute of Chicago.",
+    zh: "艺术藏品配图来自芝加哥艺术博物馆公共领域馆藏；博客封面为站点提供的插画。",
+    en: "Collection artwork is from the public domain holdings of The Art Institute of Chicago. The blog cover illustration was supplied for this site.",
   } satisfies Bilingual,
 
   rights: {

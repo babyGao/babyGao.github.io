@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 这个站怎么加内容
 date: 2026-01-05
 category: 站务

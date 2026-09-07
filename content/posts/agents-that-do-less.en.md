@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Make the Agent Do Less
 date: 2026-05-14
 category: Notes

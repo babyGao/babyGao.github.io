@@ -2,29 +2,27 @@
 title: Diffusion-Anchored Jacobi Forcing
 date: 2026-07-10
 category: Parallel decoding
-summary: Anchoring Jacobi iteration with a diffusion-style global draft to cut the rounds needed to converge, while staying bit-identical to token-by-token generation.
+summary: Improving convergence in parallel decoding with global drafts while preserving model weights and verification constraints, yielding token-wise agreement with sequential generation.
 cover: /art/research-weave.jpg
-tags: [Parallel decoding, Jacobi iteration, Diffusion]
+tags: [Parallel decoding, Jacobi iteration, Diffusion models]
 featured: true
-venue: Under submission
+venue: Under review
 authors: [Zelin Gao]
 links: [arXiv|https://arxiv.org/abs/0000.00000, Code|https://github.com/your-handle]
 ---
 
 ## Abstract
 
-This work studies convergence efficiency in parallel decoding. Jacobi decoding guesses several upcoming positions at once and refines them in parallel; on convergence the result is identical to sequential generation, but convergence is far slower than the theoretical ceiling, and the steps actually saved fall short of what the method promises.
+Autoregressive language generation relies on sequential computation, limiting inference efficiency in latency-sensitive settings. Jacobi parallel decoding can update multiple positions while preserving output consistency, but its practical acceleration depends on iterative convergence.
 
-We propose anchoring the iteration with a diffusion-style global draft. The draft affects only the **starting point**, never the **end point** — the verification criterion is not relaxed at all, so the output remains bit-identical to sequential generation. A good draft cuts the rounds needed to converge substantially; a mismatched one degrades at worst to ordinary Jacobi, never slower.
+Diffusion-Anchored Jacobi Forcing uses global drafts to improve convergence in parallel generation. The draft influences the starting point without changing the converged result. Under matched generation settings and verification constraints, the final output agrees token by token with sequential generation. The work studies decoding optimization with fixed model weights, addressing efficiency alongside output consistency.
 
 ## Background
 
-An autoregressive model emits one token at a time because token *n* waits on token *n-1*. But that dependency isn't genuinely binding at every step — in most sentences there are many positions where, once the surrounding context is fixed, what goes there is essentially determined.
+Autoregressive models generate sequences through successive prefix-conditioned distributions. As model size and generation length increase, sequential dependencies, weight access, and cache reads jointly affect latency. Greater hardware compute capacity or larger request batches may not sufficiently reduce the waiting time for an individual sequence.
 
-Parallel decoding exploits exactly this. What makes it unusual is that it can leave **the output completely unchanged**: quantisation changes the numbers, attention-structure changes alter model behaviour, but parallel decoding — as long as the verification criterion isn't relaxed — produces a sequence bit-identical to sequential generation. Where output fidelity is a hard requirement, that property is worth more than the speedup itself.
-
-The cost is slow convergence. The number of Jacobi iterations depends on the quality of the initial guess, and the usual approach fills every pending position with the same placeholder — guessing from nothing. That is what this work sets out to improve.
+Parallel decoding reorganizes generation to exploit parallelism within a sequence. Output consistency and convergence cost must be considered together: the former determines whether results are preserved, while the latter determines whether parallel computation yields practical efficiency gains. Improving convergence under fixed consistency constraints is the central research question.
 
 ---
 
-Full method, experimental setup, and results are in the paper, which is under submission. Links will be updated on acceptance.
+Full methods and experiments are described in the paper. The manuscript is under review; publication information and links will be updated.

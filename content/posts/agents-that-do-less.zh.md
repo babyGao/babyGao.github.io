@@ -1,4 +1,5 @@
 ---
+draft: true
 title: 让智能体少做一点
 date: 2026-05-14
 category: 笔记

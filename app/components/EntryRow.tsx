@@ -14,6 +14,7 @@ export function EntryRow({ item, lang }: { item: EntryListItem; lang: Locale }) 
       <p className="entry-row-meta">
         {item.category ? <span className="entry-row-category">{item.category}</span> : null}
         {item.date ? <time dateTime={item.date}>{formatDateShort(item.date, lang)}</time> : null}
+        {item.venue ? <span>{item.venue}</span> : null}
       </p>
       <h3>
         <Link href={href}>{item.title}</Link>
