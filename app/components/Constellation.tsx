@@ -5,11 +5,10 @@ import { localePath, type Locale } from "../../lib/i18n";
 import { home } from "../../content/site";
 
 /**
- * 首页那张深色卡片：中间是一句话和一个按钮，四周散落着小图和几个问题，
- * 用细线连起来。对应参考站首页 "built on hard questions" 那一屏。
+ * 首页深色画面：中央放标题，两侧用馆藏图片与细线串联研究主题。
  *
- * 坐标都是卡片宽高的百分比。中间 26%~74% 留空给文字，图和问题只放在两侧。
- * 窄屏下整个装饰层会被隐藏，只留中间的文字。
+ * 坐标相对于固定画布。展开时只改变裁切范围，图片与文字不随之缩放或移动。
+ * 靠近中央的图片从初始状态可见，外围图片随着两侧展开逐步显露。
  */
 
 type Spot = { file: string; x: number; y: number; w: number; r: number };
@@ -19,27 +18,27 @@ type Spot = { file: string; x: number; y: number; w: number; r: number };
  * 免得图和字叠在一起。改坐标时记得一起check这两条带还空着。
  */
 const LEFT_SPOTS: Spot[] = [
-  { file: "spark-summit", x: 8, y: 10, w: 78, r: -4 },
-  { file: "spark-scroll", x: 20, y: 22, w: 62, r: 3 },
-  { file: "spark-fragment", x: 5, y: 52, w: 68, r: -2 },
-  { file: "spark-utsu", x: 19, y: 64, w: 58, r: 4 },
-  { file: "spark-falls", x: 9, y: 90, w: 70, r: -3 },
+  { file: "spark-summit", x: 8, y: 10, w: 94, r: -4 },
+  { file: "post-parallel-geometry", x: 30, y: 22, w: 78, r: 3 },
+  { file: "spark-fragment", x: 17, y: 52, w: 82, r: -2 },
+  { file: "research-botanical-study", x: 29, y: 64, w: 72, r: 4 },
+  { file: "post-visual-glass", x: 9, y: 90, w: 86, r: -3 },
 ];
 
 const RIGHT_SPOTS: Spot[] = [
-  { file: "spark-plan", x: 90, y: 10, w: 74, r: 3 },
-  { file: "spark-fish", x: 78, y: 22, w: 60, r: -3 },
-  { file: "spark-sampler", x: 94, y: 52, w: 64, r: 2 },
-  { file: "spark-panel", x: 80, y: 64, w: 58, r: -4 },
-  { file: "spark-dragon", x: 90, y: 90, w: 58, r: 4 },
+  { file: "spark-plan", x: 90, y: 10, w: 90, r: 3 },
+  { file: "spark-fish", x: 70, y: 22, w: 76, r: -3 },
+  { file: "spark-sampler", x: 83, y: 52, w: 80, r: 2 },
+  { file: "spark-panel", x: 71, y: 64, w: 74, r: -4 },
+  { file: "spark-dragon", x: 91, y: 90, w: 74, r: 4 },
 ];
 
 /** 四个问题挂在哪儿，side 决定它贴左边还是贴右边 */
 const LABEL_SPOTS = [
-  { side: "left" as const, x: 3, y: 37 },
-  { side: "left" as const, x: 4, y: 78 },
-  { side: "right" as const, x: 3, y: 37 },
-  { side: "right" as const, x: 4, y: 78 },
+  { side: "left" as const, x: 23, y: 37 },
+  { side: "left" as const, x: 23, y: 78 },
+  { side: "right" as const, x: 23, y: 37 },
+  { side: "right" as const, x: 23, y: 78 },
 ];
 
 export function Constellation({ lang }: { lang: Locale }) {

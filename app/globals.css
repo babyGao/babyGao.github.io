@@ -405,8 +405,12 @@ img {
 }
 
 .home-visual .spark {
-  width: calc(min(100%, var(--container)) - 2 * var(--gutter));
-  margin-inline: auto;
+  --reveal-start: max(var(--gutter), calc((100% - var(--container)) / 2 + var(--gutter)));
+  --reveal-middle: clamp(1rem, 2.5vw, 3rem);
+  /* Keep the full composition in place; scrolling only uncovers its edges. */
+  width: 100%;
+  border-radius: 0;
+  clip-path: inset(0 var(--reveal-start) round 20px);
 }
 
 @supports (animation-timeline: view()) {
@@ -420,17 +424,14 @@ img {
 }
 
 @keyframes home-visual-expand {
-  0%, 30% {
-    width: calc(min(100%, var(--container)) - 2 * var(--gutter));
-    border-radius: 20px;
+  0%, 45% {
+    clip-path: inset(0 var(--reveal-start) round 20px);
   }
-  80% {
-    width: calc(100% - 2rem);
-    border-radius: 6px;
+  65%, 82% {
+    clip-path: inset(0 var(--reveal-middle) round 4px);
   }
   100% {
-    width: 100%;
-    border-radius: 0;
+    clip-path: inset(0 0px round 0px);
   }
 }
 
@@ -472,7 +473,10 @@ img {
 
 .spark-scatter {
   position: absolute;
-  inset: 0;
+  inset-block: 0;
+  left: 50%;
+  width: max(100%, 120rem);
+  transform: translateX(-50%);
   z-index: 1;
   pointer-events: none;
 }
