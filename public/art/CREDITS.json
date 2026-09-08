@@ -210,5 +210,65 @@
     "is_public_domain": true,
     "theme": "阅读、文档与信息表达",
     "display_position": "50% 38%"
+  },
+  {
+    "file": "/art/project-education-books.jpg",
+    "title": "Still Life with Books",
+    "artist": "Jan Lievens",
+    "date": "c. 1628–1632",
+    "source": "https://www.rijksmuseum.nl/en/collection/SK-A-4090",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Jan_Lievens_-_Still_Life_with_Books.jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "书籍与学习资料",
+    "display_position": "50% 60%"
+  },
+  {
+    "file": "/art/post-technical-letters.jpg",
+    "title": "Newspapers, Letters and Writing Implements on a Wooden Board",
+    "artist": "Edward Collier",
+    "date": "c. 1699",
+    "source": "https://www.tate.org.uk/art/artworks/collier-a-trompe-loeil-of-newspapers-letters-and-writing-implements-on-a-wooden-board-t03853",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Edward_Collier%27s_painting_%27Newspapers,_Letters_and_Writing_Implements_on_a_Wooden_Board%27.jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "文档、书信与信息组织",
+    "display_position": "50% 42%"
+  },
+  {
+    "file": "/art/post-parallel-geometry.jpg",
+    "title": "Six Polyhedra Based on a Hexahedron",
+    "artist": "Jost Amman, after Wenzel Jamnitzer",
+    "date": "1568",
+    "source": "https://hdl.handle.net/10934/RM0001.COLLECT.721784",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Zes_veelvlakken_met_een_hexa%C3%ABder_als_uitgangspunt,_BI-1969-205-12.jpg",
+    "license": "CC0",
+    "is_public_domain": true,
+    "theme": "结构分解与复杂度递进",
+    "display_position": "50% 50%"
+  },
+  {
+    "file": "/art/post-visual-glass.jpg",
+    "title": "Articles of Glass",
+    "artist": "William Henry Fox Talbot",
+    "date": "before June 1844",
+    "source": "https://www.metmuseum.org/art/collection/search/265916",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Articles_of_Glass_(IA_mma_articles_of_glass_265916).jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "图像记录与细节观察",
+    "display_position": "50% 50%"
+  },
+  {
+    "file": "/art/research-botanical-study.jpg",
+    "title": "Copy of Botanical Engraving of \"Celtis\"",
+    "artist": "William Henry Fox Talbot",
+    "date": "1840/45",
+    "source": "https://www.artic.edu/artworks/127282",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Copy_of_Botanical_Engraving_of_%22Celtis%22_by_Henry_Fox_Talbot.jpg",
+    "license": "Public domain",
+    "is_public_domain": true,
+    "theme": "植物图谱与专业知识",
+    "display_position": "50% 48%"
   }
 ]

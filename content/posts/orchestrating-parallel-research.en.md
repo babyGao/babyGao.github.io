@@ -3,7 +3,7 @@ title: Claude Code Skills: Coordinating Parallel Research
 date: 2026-07-07
 category: Research workflows
 summary: Organizing independent experiments and development tasks through decomposition, workspace isolation, task dispatch, and progress tracking.
-cover: /art/post-parallel-printmaking.jpg
+cover: /art/post-parallel-geometry.jpg
 tags: [Claude Code, Skills]
 featured: true
 authors: [Zelin Gao]

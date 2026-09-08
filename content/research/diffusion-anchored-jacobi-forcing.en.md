@@ -3,7 +3,7 @@ title: Diffusion-Anchored Jacobi Forcing
 date: 2026-07-10
 category: Parallel decoding
 summary: Improving convergence in parallel decoding with global drafts while preserving model weights and verification constraints, yielding token-wise agreement with sequential generation.
-cover: /art/research-parallel-train.jpg
+cover: /art/research-sequence-motion.jpg
 tags: [Parallel decoding, Jacobi iteration, Diffusion models]
 featured: true
 venue: Under review

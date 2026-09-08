@@ -745,11 +745,10 @@ img {
   object-fit: cover;
 }
 
-/* 保留教学中的人物与乐谱，以及阅读、审阅场景中的动作主体。 */
-img[src*="project-education-lesson"] { object-position: 50% 25%; }
-img[src*="post-technical-reading"] { object-position: 50% 38%; }
-img[src*="post-visual-review"] { object-position: 50% 48%; }
-img[src*="post-parallel-printmaking"] { object-position: 50% 38%; }
+/* 配图按书籍、文书及图谱的主体位置裁切。 */
+img[src*="project-education-books"] { object-position: 50% 60%; }
+img[src*="post-technical-letters"] { object-position: 50% 42%; }
+img[src*="research-botanical-study"] { object-position: 50% 48%; }
 img[src*="research-sequence-motion"] { object-position: 50% 49%; transform: scale(1.7); }
 
 .feature-caption {
@@ -778,6 +777,14 @@ img[src*="research-sequence-motion"] { object-position: 50% 49%; transform: scal
 .feature-caption .entry-row-summary { margin-block-start: 0.5rem; }
 .feature-side .entry-row:first-child { padding-block-start: 0; }
 .feature-archive-link { margin-block-start: 1.75rem; }
+
+.feature-split-aside {
+  grid-template-columns: minmax(0, 1.65fr) minmax(19rem, 1fr);
+}
+
+.feature-split-aside .entry-row { padding-block: 1.25rem; }
+.feature-split-aside .entry-row:first-child { padding-block-start: 0; }
+.feature-split-aside .entry-row-meta { flex-wrap: wrap; row-gap: 0.35rem; }
 
 .publications {
   margin-block-start: clamp(3rem, 6vw, 5rem);
@@ -1416,9 +1423,14 @@ img[src*="research-sequence-motion"] { object-position: 50% 49%; transform: scal
   .page-intro {
     gap: 1.5rem;
   }
+
+  .feature-split-aside {
+    grid-template-columns: minmax(0, 1.65fr) minmax(19rem, 1fr);
+  }
 }
 
 @media (max-width: 760px) {
+  .feature-split-aside { grid-template-columns: minmax(0, 1fr); }
   .feature-caption,
   .publications-grid { grid-template-columns: minmax(0, 1fr); }
 

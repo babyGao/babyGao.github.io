@@ -73,13 +73,13 @@ export default async function ResearchPage({ params }: { params: Promise<{ lang:
 
             {papers.length ? (
               <>
-                <FeaturedEntries items={papers} lang={lang} archiveLabel={lang === "zh" ? "查看全部研究" : "View all research"} />
+                <FeaturedEntries items={papers} lang={lang} layout="aside" archiveLabel={lang === "zh" ? "查看全部研究" : "View all research"} />
                 <PublicationList
                   items={papers}
                   lang={lang}
                   title={lang === "zh" ? "研究论文" : "Publications"}
                   note={lang === "zh" ? "论文概要与发表进展。完整方法与实验见论文，投稿中与工作论文将持续更新。" : "Research overviews and publication updates. Full methods and experiments are described in the papers; manuscripts remain subject to updates."}
-                  image="/art/research-sequence-motion.jpg"
+                  image="/art/research-botanical-study.jpg"
                 />
               </>
             ) : (

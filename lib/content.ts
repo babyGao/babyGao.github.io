@@ -278,13 +278,14 @@ export function formatDate(date: string, locale: Locale): string {
   const month = parsed.getUTCMonth();
   const day = parsed.getUTCDate();
 
-  if (locale === "zh") return `${year} 年 ${month + 1} 月 ${day} 日`;
+  const monthOnly = /^\d{4}-\d{2}$/.test(date);
+  if (locale === "zh") return monthOnly ? `${year} 年 ${month + 1} 月` : `${year} 年 ${month + 1} 月 ${day} 日`;
 
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December",
   ];
-  return `${months[month]} ${day}, ${year}`;
+  return monthOnly ? `${months[month]} ${year}` : `${months[month]} ${day}, ${year}`;
 }
 
 /** 列表里的日期用短格式，省得一行放不下 */
@@ -297,8 +298,9 @@ export function formatDateShort(date: string, locale: Locale): string {
   const month = parsed.getUTCMonth();
   const day = parsed.getUTCDate();
 
-  if (locale === "zh") return `${year}.${String(month + 1).padStart(2, "0")}.${String(day).padStart(2, "0")}`;
+  const monthOnly = /^\d{4}-\d{2}$/.test(date);
+  if (locale === "zh") return `${year}.${String(month + 1).padStart(2, "0")}${monthOnly ? "" : `.${String(day).padStart(2, "0")}`}`;
 
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  return `${months[month]} ${day}, ${year}`;
+  return monthOnly ? `${months[month]} ${year}` : `${months[month]} ${day}, ${year}`;
 }

@@ -58,7 +58,7 @@ export default async function BlogPage({ params }: { params: Promise<{ lang: str
                   lang={lang}
                   title={lang === "zh" ? "全部文章" : "All articles"}
                   note={lang === "zh" ? "工具实践与工作流记录。点击标题查看文章概要及博客园原文。" : "Tools and workflows in practice. Select a title for an overview and the original Chinese article on CNBlogs."}
-                  image="/art/post-technical-reading.jpg"
+                  image="/art/post-technical-letters.jpg"
                 />
               </>
             ) : (

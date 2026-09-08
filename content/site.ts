@@ -210,8 +210,8 @@ export const projectsPage = {
 export const researchPage = {
   title: { zh: "研究", en: "Research" } satisfies Bilingual,
   lead: {
-    zh: "研究集中在大语言模型的推理效率，关注并行解码与推测解码中的计算组织、收敛效率和草稿长度选择，探索模型权重不变条件下的生成加速。",
-    en: "Research focuses on language model inference efficiency, examining computation, convergence, and draft length selection in parallel and speculative decoding without changing model weights.",
+    zh: "研究集中在大语言模型的推理效率与领域评测，探索模型权重不变条件下的并行生成加速，并通过专业知识基准评估模型回答的准确性、逻辑与安全性。",
+    en: "Research focuses on language model inference efficiency and domain evaluation, exploring parallel generation with fixed model weights and assessing factual accuracy, reasoning, and safety through specialist knowledge benchmarks.",
   } satisfies Bilingual,
   /** 研究方向的小格子，对应参考站的 Research teams */
   topics: {
@@ -220,14 +220,14 @@ export const researchPage = {
       { name: "扩散锚定", desc: "研究全局草稿与迭代收敛效率之间的关系。" },
       { name: "推测解码", desc: "研究草稿长度、接受率与验证成本之间的权衡。" },
       { name: "服务与调度", desc: "关注批处理、KV 缓存与显存访问对延迟和吞吐的影响。" },
-      { name: "评测", desc: "在统一生成条件下评估输出一致性、延迟与资源开销。" },
+      { name: "领域评测", desc: "围绕中医药专业知识，评估模型回答的事实、逻辑与安全性。" },
     ],
     en: [
       { name: "Parallel decoding", desc: "Convergence and output consistency in parallel generation across multiple positions." },
       { name: "Diffusion anchoring", desc: "The relationship between global drafts and iterative convergence." },
       { name: "Speculative decoding", desc: "Trade-offs among draft length, acceptance rate, and verification cost." },
       { name: "Serving & scheduling", desc: "Effects of batching, KV caches, and memory access on latency and throughput." },
-      { name: "Evaluation", desc: "Output consistency, latency, and resource costs under matched generation conditions." },
+      { name: "Domain evaluation", desc: "Factual accuracy, reasoning, and safety in answers about traditional Chinese medicine." },
     ],
   } satisfies BilingualOf<{ name: string; desc: string }[]>,
 };

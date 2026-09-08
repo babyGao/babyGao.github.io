@@ -3,7 +3,7 @@ title: Claude Code Skills：浏览器自动化与界面验证
 date: 2026-07-07
 category: 开发工具
 summary: 通过 Playwright CLI 执行浏览器交互、检查页面状态并获取截图，将真实界面反馈纳入前端开发与操作文档编写。
-cover: /art/post-visual-review.jpg
+cover: /art/post-visual-glass.jpg
 tags: [Claude Code, Skills]
 featured: true
 authors: [高泽林]
