@@ -1,22 +1,29 @@
 import Link from "next/link";
 import { localePath, type Locale } from "../../lib/i18n";
-import { footer, identity } from "../../content/site";
+import { footer, identity, ui } from "../../content/site";
 
 /** 深色页脚，每一页都以它收尾。参考站的页脚永远是深色，不随页面反色。 */
-export function SiteFooter({ lang }: { lang: Locale }) {
+export function SiteFooter({ lang, layout = "columns" }: { lang: Locale; layout?: "columns" | "compact" }) {
   const year = new Date().getUTCFullYear();
 
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer${layout === "compact" ? " site-footer-compact" : ""}`}>
       <div className="site-footer-inner">
         <div className="site-footer-brand">
           <Link className="brand" href={localePath(lang)}>
             {identity.brand[lang]}
           </Link>
-          <p>{identity.role[lang]}</p>
+          {layout === "columns" ? <p>{identity.role[lang]}</p> : null}
         </div>
 
-        <div className="site-footer-columns">
+        {layout === "compact" ? (
+          <nav className="site-footer-links" aria-label={lang === "zh" ? "页脚导航" : "Footer navigation"}>
+            <Link href={localePath(lang, "research")}>{ui.navResearch[lang]}</Link>
+            <Link href={localePath(lang, "projects")}>{ui.navProjects[lang]}</Link>
+            <Link href={localePath(lang, "blog")}>{ui.navBlog[lang]}</Link>
+            <a href={`mailto:${identity.email}`}>{ui.contact[lang]}</a>
+          </nav>
+        ) : <div className="site-footer-columns">
           {footer.columns[lang].map((column) => (
             <div key={column.title} className="site-footer-column">
               <h2>{column.title}</h2>
@@ -49,7 +56,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
               ))}
             </ul>
           </div>
-        </div>
+        </div>}
       </div>
 
       <div className="site-footer-base" id="credits">

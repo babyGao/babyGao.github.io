@@ -14,17 +14,19 @@ export function EntryCard({
   item,
   lang,
   detailLabel,
+  appearance = "image",
 }: {
   item: EntryListItem;
   lang: Locale;
   /** 摘要下面那行行内链接的文字，比如"项目详情" */
   detailLabel: string;
+  appearance?: "image" | "text";
 }) {
   const href = entryHref(lang, item.collection, item.slug);
 
   return (
     <article className="entry-card">
-      {item.cover ? (
+      {item.cover && appearance === "image" ? (
         <Link className="entry-card-cover" href={href} tabIndex={-1} aria-hidden="true">
           <Image src={item.cover} alt="" fill sizes="(max-width: 900px) 100vw, 33vw" />
         </Link>

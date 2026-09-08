@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, localePath } from "../../lib/i18n";
-import { getHighlights } from "../../lib/content";
+import { entryHref, getHighlights } from "../../lib/content";
 import { home, identity, ui } from "../../content/site";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { Constellation } from "../components/Constellation";
 import { EntryCard } from "../components/EntryCard";
-import { EntryRow } from "../components/EntryRow";
 import { Arrow } from "../components/Arrow";
 
 export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
@@ -16,7 +15,8 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
   const projects = getHighlights("projects", lang, 3);
   const research = getHighlights("research", lang, 3);
-  const posts = getHighlights("posts", lang, 3);
+  const posts = getHighlights("posts", lang, 2);
+  const updates = [...research, ...posts];
 
   return (
     <>
@@ -41,14 +41,12 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
         </section>
 
-        <div className="band band-tint band-flush">
-          <div className="container">
-            <Constellation lang={lang} />
-          </div>
+        <div className="band band-tint band-flush home-visual">
+          <Constellation lang={lang} />
         </div>
 
         {/* 项目：三张奶油卡 */}
-        <section className="band band-tint">
+        <section className="band band-tint home-projects">
           <div className="container">
             <SectionHead
               title={home.projects.title[lang]}
@@ -64,6 +62,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
                     item={item}
                     lang={lang}
                     detailLabel={ui.projectDetail[lang]}
+                    appearance="text"
                   />
                 ))}
               </div>
@@ -73,87 +72,35 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </div>
         </section>
 
-        {/* 研究：一列条目 */}
-        <section className="band band-plain">
-          <div className="container">
-            <SectionHead
-              title={home.research.title[lang]}
-              lead={home.research.lead[lang]}
-              href={localePath(lang, "research")}
-              action={ui.viewAll[lang]}
-            />
-            {research.length ? (
-              <div className="row-list">
-                {research.map((item) => (
-                  <EntryRow key={item.slug} item={item} lang={lang} />
-                ))}
-              </div>
-            ) : (
-              <p className="empty-note">{ui.empty[lang]}</p>
-            )}
-          </div>
-        </section>
-
-        {/* 博客 */}
-        <section className="band band-tint">
-          <div className="container">
-            <SectionHead
-              title={home.journal.title[lang]}
-              lead={home.journal.lead[lang]}
-              href={localePath(lang, "blog")}
-              action={ui.viewAll[lang]}
-            />
-            {posts.length ? (
-              <div className="row-list">
-                {posts.map((item) => (
-                  <EntryRow key={item.slug} item={item} lang={lang} />
-                ))}
-              </div>
-            ) : (
-              <p className="empty-note">{ui.empty[lang]}</p>
-            )}
-          </div>
-        </section>
-
-        {/* 关于 */}
-        <section className="band band-plain about" id="about">
-          <div className="container">
-            <div className="about-grid">
+        {/* 简介与少量研究、文章入口 */}
+        <section className="band band-tint home-overview" id="about">
+          <div className="container home-overview-grid">
+            <div className="home-overview-intro">
               <h2>{home.about.title[lang]}</h2>
-              <div className="about-body">
-                {home.about.body[lang].map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
-
-            <div className="skill-grid">
-              {home.about.skills[lang].map((skill) => (
-                <div key={skill.name} className="skill">
-                  <h3>{skill.name}</h3>
-                  <p>{skill.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 收尾的联系卡片，全站唯一一处珊瑚色 */}
-        <section className="band band-plain band-flush">
-          <div className="container">
-            <div className="callout">
-              <h2>{home.contact.title[lang]}</h2>
-              <p>{home.contact.lead[lang]}</p>
-              <a className="button button-light" href={`mailto:${identity.email}`}>
+              <p>{home.about.body[lang][0]}</p>
+              <a className="inline-link" href={`mailto:${identity.email}`}>
                 {identity.email}
                 <Arrow />
               </a>
             </div>
+            <nav aria-label={lang === "zh" ? "精选研究与文章" : "Selected research and articles"}>
+              <ul className="home-updates">
+                {updates.map((item) => (
+                  <li key={`${item.collection}-${item.slug}`}>
+                    <Link href={entryHref(lang, item.collection, item.slug)}>
+                      <span>{item.title}</span>
+                      <span className="home-update-category">{item.collection === "research" ? ui.navResearch[lang] : ui.navBlog[lang]}</span>
+                      <Arrow />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </section>
       </main>
 
-      <SiteFooter lang={lang} />
+      <SiteFooter lang={lang} layout="compact" />
     </>
   );
 }
